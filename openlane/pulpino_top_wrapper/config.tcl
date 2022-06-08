@@ -50,7 +50,6 @@ set ::env(VERILOG_FILES) "\
 	$script_dir/../../verilog/rtl/rtl/components/pulp_clock_inverter.v \
 	$script_dir/../../verilog/rtl/rtl/components/pulp_clock_mux2.v \
 	$script_dir/../../verilog/rtl/rtl/components/rstgen.v \
-	$script_dir/../../verilog/rtl/rtl/components/sky130_sram_2kbyte_1rw1r_32x512_8.v \
 	$script_dir/../../verilog/rtl/rtl/components/sp_ram.v \
 	$script_dir/../../verilog/rtl/rtl/includes/apb_bus.sv \
 	$script_dir/../../verilog/rtl/rtl/includes/apu_defines.sv \
@@ -225,12 +224,12 @@ set ::env(CLOCK_PORT) "wb_clk_i"
 set ::env(CLOCK_NET) "pulpino_top_wrapper.clk"
 set ::env(CLOCK_PERIOD) "100"
 
-set ::env(FP_SIZING) absolute
-set ::env(DIE_AREA) "0 0 900 600"
+#set ::env(FP_SIZING) absolute
+#set ::env(DIE_AREA) "0 0 900 600"
 
 set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
 
-set ::env(PL_BASIC_PLACEMENT) 1
+#set ::env(PL_BASIC_PLACEMENT) 1
 set ::env(PL_TARGET_DENSITY) 0.4
 
 # Maximum layer used for routing is metal 4.
@@ -249,3 +248,25 @@ set ::env(GND_NETS) [list {vssd1}]
 set ::env(DIODE_INSERTION_STRATEGY) 4 
 # If you're going to use multiple power domains, then disable cvc run.
 set ::env(RUN_CVC) 1
+
+####################################################################################################
+## Internal Macro
+
+# $script_dir/../../verilog/rtl/rtl/components/sky130_sram_2kbyte_1rw1r_32x512_8.v \
+
+### Macro PDN Connections
+set ::env(FP_PDN_MACRO_HOOKS) "\
+   sky130_sram_2kbyte_1rw1r_32x512_8 vccd1 vssd1"
+
+### Macro Placement
+set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
+
+### Black-box verilog and views
+set ::env(VERILOG_FILES_BLACKBOX) "\
+    $script_dir/../../verilog/rtl/rtl/components/sky130_sram_2kbyte_1rw1r_32x512_8.v"
+
+set ::env(EXTRA_LEFS) "\
+	$script_dir/../../lef/sky130_sram_2kbyte_1rw1r_32x512_8.lef"
+
+set ::env(EXTRA_GDS_FILES) "\
+	$script_dir/../../gds/sky130_sram_2kbyte_1rw1r_32x512_8.gds"
