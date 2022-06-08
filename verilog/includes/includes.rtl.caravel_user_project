@@ -1,5 +1,312 @@
 # Caravel user project includes
 -v $(USER_PROJECT_VERILOG)/rtl/user_project_wrapper.v	     
--v $(USER_PROJECT_VERILOG)/rtl/user_proj_example.v
+# -v $(USER_PROJECT_VERILOG)/rtl/user_proj_example.v
 
- 
+########################################################################
+# add our own verilog files
+# rtl root
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/apb_mock_uart.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/axi_mem_if_SP_wrap.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/axi_node_intf_wrap.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/axi_slice_wrap.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/axi_spi_slave_wrap.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/axi2apb_wrap.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/boot_code.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/boot_rom_wrap.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/clk_rst_gen.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/core_region.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/core2axi_wrap.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/dp_ram_wrap.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/instr_ram_wrap.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/periph_bus_wrap.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/peripherals.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/pulpino_top_wrapper.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/pulpino_top.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/ram_mux.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/sp_ram_wrap.v
+
+########################################################################
+# rtl/components
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/components/cluster_clock_gating.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/components/cluster_clock_inverter.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/components/cluster_clock_mux2.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/components/dp_ram.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/components/generic_fifo.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/components/pulp_clock_gating.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/components/pulp_clock_inverter.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/components/pulp_clock_mux2.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/components/rstgen.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/components/sky130_sram_2kbyte_1rw1r_32x512_8.v
+-v $(USER_PROJECT_VERILOG)/rtl/rtl/components/sp_ram.v
+
+########################################################################
+# includes
+-sv $(USER_PROJECT_VERILOG)/rtl/rtl/includes/apb_bus.sv
+-sv $(USER_PROJECT_VERILOG)/rtl/rtl/includes/apu_defines.sv
+-sv $(USER_PROJECT_VERILOG)/rtl/rtl/includes/axi_bus.sv
+-sv $(USER_PROJECT_VERILOG)/rtl/rtl/includes/config.sv
+-sv $(USER_PROJECT_VERILOG)/rtl/rtl/includes/debug_bus.sv
+
+########################################################################
+# ips
+
+########################################################################
+# adv_dbg_if
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/adbg_axi_biu.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/adbg_axi_defines.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/adbg_axi_module.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/adbg_axionly_top.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/adbg_crc32.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/adbg_defines.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/adbg_lint_biu.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/adbg_lint_defines.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/adbg_lint_module.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/adbg_lintonly_top.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/adbg_or1k_biu.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/adbg_or1k_defines.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/adbg_or1k_module.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/adbg_or1k_status_reg.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/adbg_tap_defines.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/adbg_tap_top.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/adbg_top.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/adv_dbg_if.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/bytefifo.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/syncflop.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/adv_dbg_if/rtl/syncreg.v
+
+########################################################################
+########################################################################
+########################################################################
+# apb
+
+########################################################################
+# apb_event_unit
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_event_unit/apb_event_unit.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_event_unit/generic_service_unit.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_event_unit/sleep_unit.v
+-sv $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_event_unit/include/defines_event_unit.sv
+
+########################################################################
+# apb_fll_if
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_fll_if/apb_fll_if.v
+
+########################################################################
+# apb_gpio
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_gpio/apb_gpio.v
+
+########################################################################
+# apb_i2c
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_i2c/apb_i2c.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_i2c/i2c_master_bit_ctrl.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_i2c/i2c_master_byte_ctrl.v
+-sv $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_i2c/i2c_master_defines.sv
+
+########################################################################
+# apb_node
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_node/apb_node_wrap.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_node/apb_node.v
+
+########################################################################
+# apb_pulpino
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_pulpino/apb_pulpino.v
+
+########################################################################
+# apb_spi_master
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_spi_master/apb_spi_master.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_spi_master/spi_master_apb_if.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_spi_master/spi_master_clkgen.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_spi_master/spi_master_controller.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_spi_master/spi_master_fifo.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_spi_master/spi_master_rx.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_spi_master/spi_master_tx.v
+
+########################################################################
+# apb_timer
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_timer/apb_timer.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_timer/timer.v
+
+########################################################################
+# apb_uart_sv
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_uart_sv/apb_uart_sv.v
+# -v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_uart_sv/apb_uart.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_uart_sv/io_generic_fifo.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_uart_sv/uart_interrupt.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_uart_sv/uart_rx.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb_uart_sv/uart_tx.v
+
+########################################################################
+# apb2per
+-v $(USER_PROJECT_VERILOG)/rtl/ips/apb/apb2per/apb2per.v
+
+
+
+########################################################################
+########################################################################
+########################################################################
+# axi
+
+########################################################################
+# axi_mem_if_DP
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_mem_if_DP/axi_mem_if_DP_hybr.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_mem_if_DP/axi_mem_if_DP.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_mem_if_DP/axi_mem_if_MP_Hybrid_multi_bank.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_mem_if_DP/axi_mem_if_multi_bank.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_mem_if_DP/axi_mem_if_SP.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_mem_if_DP/axi_read_only_ctrl.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_mem_if_DP/axi_write_only_ctrl.v
+
+########################################################################
+# axi_node
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/apb_regs_top.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_address_decoder_AR.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_address_decoder_AW.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_address_decoder_BR.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_address_decoder_BW.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_address_decoder_DW.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_AR_allocator.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_ArbitrationTree.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_AW_allocator.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_BR_allocator.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_BW_allocator.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_DW_allocator.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_FanInPrimitive_Req.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_multiplexer.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_node_wrap_with_slices.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_node_wrap.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_node.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_regs_top.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_request_block.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_response_block.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/axi_RR_Flag_Req.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_node/defines.v
+
+########################################################################
+# axi_slice
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_slice/axi_ar_buffer.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_slice/axi_aw_buffer.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_slice/axi_b_buffer.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_slice/axi_buffer.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_slice/axi_r_buffer.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_slice/axi_slice.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_slice/axi_w_buffer.v
+
+########################################################################
+# axi_slice_dc
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_slice_dc/axi_slice_dc_master.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_slice_dc/axi_slice_dc_slave.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_slice_dc/dc_data_buffer.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_slice_dc/dc_full_detector.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_slice_dc/dc_synchronizer.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_slice_dc/dc_token_ring_fifo_din.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_slice_dc/dc_token_ring_fifo_dout.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_slice_dc/dc_token_ring.v
+
+########################################################################
+# axi_spi_master
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_spi_master/axi_spi_master.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_spi_master/spi_master_axi_if.v
+# -v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_spi_master/spi_master_clkgen.v
+# -v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_spi_master/spi_master_controller.v
+# -v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_spi_master/spi_master_fifo.v
+# -v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_spi_master/spi_master_rx.v
+# -v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_spi_master/spi_master_tx.v
+
+########################################################################
+# axi_spi_slave
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_spi_slave/axi_spi_slave.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_spi_slave/spi_slave_axi_plug.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_spi_slave/spi_slave_cmd_parser.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_spi_slave/spi_slave_controller.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_spi_slave/spi_slave_dc_fifo.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_spi_slave/spi_slave_regs.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_spi_slave/spi_slave_rx.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_spi_slave/spi_slave_syncro.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi_spi_slave/spi_slave_tx.v
+
+########################################################################
+# axi2apb
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi2apb/AXI_2_APB_32.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi2apb/AXI_2_APB.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi2apb/axi2apb.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/axi2apb/axi2apb32.v
+
+########################################################################
+# core2axi
+-v $(USER_PROJECT_VERILOG)/rtl/ips/axi/core2axi/core2axi.v
+
+
+########################################################################
+########################################################################
+########################################################################
+# fpu
+
+# fpu_div_sqrt_tp_nlp
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_div_sqrt_tp_nlp/control_tp.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_div_sqrt_tp_nlp/div_sqrt_top_tp.v
+-sv $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_div_sqrt_tp_nlp/fpu_defs_div_sqrt_tp.sv
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_div_sqrt_tp_nlp/fpu_norm_div_sqrt.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_div_sqrt_tp_nlp/iteration_div_sqrt_first.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_div_sqrt_tp_nlp/iteration_div_sqrt.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_div_sqrt_tp_nlp/nrbd_nrsc_tp.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_div_sqrt_tp_nlp/preprocess.v
+
+# fpu_fmac
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_fmac/adders.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_fmac/aligner.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_fmac/booth_encoder.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_fmac/booth_selector.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_fmac/CSA.v
+-sv $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_fmac/fpu_defs_fmac.sv
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_fmac/fpu_norm_fmac.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_fmac/LZA.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_fmac/pp_generation.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_fmac/preprocess_fmac.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_fmac/wallace.v
+
+# fpu_utils
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_utils/fpu_ff.v
+
+# fpu_v0.1
+-sv $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_v0.1/defines_fpu.sv
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_v0.1/fp_fma_wrapper.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_v0.1/fpexc.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_v0.1/fpu_add.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_v0.1/fpu_core.v
+-sv $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_v0.1/fpu_defs.sv
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_v0.1/fpu_ftoi.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_v0.1/fpu_itof.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_v0.1/fpu_mult.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_v0.1/fpu_norm.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_v0.1/fpu_private.v
+# -v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_v0.1/fpu_shared.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_v0.1/fpu.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/fpu/hdl/fpu_v0.1/riscv_fpu.v
+
+########################################################################
+########################################################################
+########################################################################
+# zero-riscy
+
+-v $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/zeroriscy_alu.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/zeroriscy_compressed_decoder.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/zeroriscy_controller.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/zeroriscy_core.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/zeroriscy_cs_registers.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/zeroriscy_debug_unit.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/zeroriscy_decoder.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/zeroriscy_ex_block.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/zeroriscy_fetch_fifo.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/zeroriscy_id_stage.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/zeroriscy_if_stage.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/zeroriscy_int_controller.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/zeroriscy_load_store_unit.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/zeroriscy_multdiv_fast.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/zeroriscy_multdiv_slow.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/zeroriscy_prefetch_buffer.v
+-v $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/zeroriscy_register_file_ff.v
+# -v $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/zeroriscy_register_file.v
+
+# include
+-sv $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/include/zeroriscy_config.sv
+-sv $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/include/zeroriscy_defines.sv
+# -sv $(USER_PROJECT_VERILOG)/rtl/ips/zero-riscy/include/zeroriscy_tracer_defines.sv
