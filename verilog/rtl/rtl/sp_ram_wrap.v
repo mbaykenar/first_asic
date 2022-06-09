@@ -1,3 +1,5 @@
+`define USE_POWER_PINS
+
 module sp_ram_wrap 
 #(
     parameter RAM_SIZE   = 32768,              // in bytes
@@ -5,6 +7,10 @@ module sp_ram_wrap
     parameter DATA_WIDTH = 32
   )
 (
+`ifdef USE_POWER_PINS
+	vccd1,	// User area 1 1.8V supply
+	vssd1,	// User area 1 digital ground
+`endif
 	clk,
 	rstn_i,
 	en_i,
@@ -18,6 +24,8 @@ module sp_ram_wrap
 	//parameter RAM_SIZE = 32768;
 	//parameter ADDR_WIDTH = $clog2(RAM_SIZE);
 	//parameter DATA_WIDTH = 32;
+inout wire vccd1;
+inout wire vssd1;
 	input wire clk;
 	input wire rstn_i;
 	input wire en_i;
@@ -30,6 +38,10 @@ module sp_ram_wrap
 	wire [31:0] ram_out_int;
 	assign rdata_o = ram_out_int;
 	sky130_sram_2kbyte_1rw1r_32x512_8 open_ram_2k(
+	`ifdef USE_POWER_PINS
+		.vccd1(vccd1),
+		.vssd1(vssd1),
+	`endif
 		.clk0(clk),
 		.csb0(1'b0),
 		.web0(~(we_i & ~bypass_en_i)),

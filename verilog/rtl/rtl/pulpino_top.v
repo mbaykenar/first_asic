@@ -3,6 +3,8 @@
 `define AXI_ID_MASTER_WIDTH     2
 `define AXI_ID_SLAVE_WIDTH      4
 `define AXI_USER_WIDTH          1
+`define USE_POWER_PINS          1
+
 
 module pulpino_top 
 #(
@@ -12,6 +14,10 @@ module pulpino_top
     parameter ZERO_RV32E           = 0
   )
 (
+    `ifdef USE_POWER_PINS
+        vccd1,	// User area 1 1.8V supply
+        vssd1,	// User area 1 digital ground
+    `endif
 	clk,
 	rst_n,
 	clk_sel_i,
@@ -79,6 +85,8 @@ module pulpino_top
 	parameter AXI_STRB_WIDTH = `AXI_DATA_WIDTH/8;
 	parameter ADDR_WIDTH = 15;
 	input wire clk;
+	inout wire vccd1;
+	inout wire vssd1;
 	input wire rst_n;
 	input wire clk_sel_i;
 	input wire clk_standalone_i;
@@ -448,6 +456,10 @@ module pulpino_top
 		.ZERO_RV32M           ( ZERO_RV32M         ),
 		.ZERO_RV32E           ( ZERO_RV32E         )
 	) core_region_i(
+	`ifdef USE_POWER_PINS
+		.vccd1(vccd1),	// User area 1 1.8V supply
+		.vssd1(vssd1),	// User area 1 digital ground
+	`endif
 		.clk(clk_int),
 		.rst_n(rstn_int),
 		.testmode_i(testmode_i),

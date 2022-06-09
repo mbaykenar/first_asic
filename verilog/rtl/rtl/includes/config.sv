@@ -23,6 +23,8 @@
 `define ROM_START_ADDR      32'h8000
 `define ASIC                1
 `define USE_ZERO_RISCY      1 
+`define USE_POWER_PINS      1 
+
 
 // Simulation only stuff
 `ifndef SYNTHESIS

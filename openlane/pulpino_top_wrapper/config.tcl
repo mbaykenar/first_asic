@@ -222,14 +222,14 @@ set ::env(DESIGN_IS_CORE) 0
 
 set ::env(CLOCK_PORT) "wb_clk_i"
 set ::env(CLOCK_NET) "pulpino_top_wrapper.clk"
-set ::env(CLOCK_PERIOD) "100"
+set ::env(CLOCK_PERIOD) "200"
 
 #set ::env(FP_SIZING) absolute
 #set ::env(DIE_AREA) "0 0 900 600"
 
 set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
 
-#set ::env(PL_BASIC_PLACEMENT) 1
+set ::env(PL_BASIC_PLACEMENT) 1
 set ::env(PL_TARGET_DENSITY) 0.4
 
 # Maximum layer used for routing is metal 4.
@@ -253,20 +253,53 @@ set ::env(RUN_CVC) 1
 ## Internal Macro
 
 # $script_dir/../../verilog/rtl/rtl/components/sky130_sram_2kbyte_1rw1r_32x512_8.v \
+ 
+#set ::env(VERILOG_FILES_BLACKBOX) "\
+#	$::env(PDK_ROOT)/$::env(PDK)/libs.ref/sky130_sram_macros/verilog/sky130_sram_2kbyte_1rw1r_32x512_8.v"
+#
+#set ::env(EXTRA_LEFS) "\
+#	$::env(PDK_ROOT)/$::env(PDK)/libs.ref/sky130_sram_macros/lef/sky130_sram_2kbyte_1rw1r_32x512_8.lef"
+#
+#set ::env(EXTRA_GDS_FILES) "\
+#	$::env(PDK_ROOT)/$::env(PDK)/libs.ref/sky130_sram_macros/gds/sky130_sram_2kbyte_1rw1r_32x512_8.gds"
+#
+#set ::env(EXTRA_LIBS) "\
+#	$::env(PDK_ROOT)/$::env(PDK)/libs.ref/sky130_sram_macros/lib/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib"
 
-### Macro PDN Connections
+## Macro PDN Connections
 set ::env(FP_PDN_MACRO_HOOKS) "\
-   sky130_sram_2kbyte_1rw1r_32x512_8 vccd1 vssd1"
+   open_ram_2k vccd1 vssd1"
 
 ### Macro Placement
 set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
 
 ### Black-box verilog and views
 set ::env(VERILOG_FILES_BLACKBOX) "\
+	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
     $script_dir/../../verilog/rtl/rtl/components/sky130_sram_2kbyte_1rw1r_32x512_8.v"
+#	/home/mbaykenar/Desktop/pdks/sky130A/libs.ref/sky130_sram_macros/verilog/sky130_sram_2kbyte_1rw1r_32x512_8.v"
+
+#set ::env(VERILOG_FILES_BLACKBOX) "\
+#    $script_dir/../../verilog/rtl/rtl/components/sky130_sram_2kbyte_1rw1r_32x512_8.v"
+
+#set ::env(EXTRA_LEFS) " \
+#	/home/mbaykenar/Desktop/pdks/sky130A/libs.ref/sky130_sram_macros/lef/sky130_sram_2kbyte_1rw1r_32x512_8.lef"
 
 set ::env(EXTRA_LEFS) "\
 	$script_dir/../../lef/sky130_sram_2kbyte_1rw1r_32x512_8.lef"
 
+#set ::env(EXTRA_GDS_FILES) "\
+#	/home/mbaykenar/Desktop/pdks/sky130A/libs.ref/sky130_sram_macros/gds/sky130_sram_2kbyte_1rw1r_32x512_8.gds"
+
 set ::env(EXTRA_GDS_FILES) "\
 	$script_dir/../../gds/sky130_sram_2kbyte_1rw1r_32x512_8.gds"
+
+set ::env(RT_MAX_LAYER) {met4}
+
+# disable pdn check nodes becuase it hangs with multiple power domains.
+# any issue with pdn connections will be flagged with LVS so it is not a critical check.
+set ::env(FP_PDN_CHECK_NODES) 0
+
+# The following is because there are no std cells in the example wrapper project.
+#set ::env(SYNTH_TOP_LEVEL) 1
+#set ::env(PL_RANDOM_GLB_PLACEMENT) 1

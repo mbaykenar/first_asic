@@ -1,3 +1,4 @@
+`define USE_POWER_PINS
 module core_region 
 #(
     parameter AXI_ADDR_WIDTH       = 32,
@@ -16,6 +17,10 @@ module core_region
 
   )
 (
+`ifdef USE_POWER_PINS
+	vccd1,	// User area 1 1.8V supply
+	vssd1,	// User area 1 digital ground
+`endif
 	clk,
 	rst_n,
 	testmode_i,
@@ -227,6 +232,8 @@ module core_region
 	//parameter ZERO_RV32M = 1;
 	//parameter ZERO_RV32E = 0;
     parameter AXI_ID_WIDTH   = AXI_ID_MASTER_WIDTH;
+	inout wire vccd1;
+	inout wire vssd1;
 	input wire clk;
 	input wire rst_n;
 	input wire testmode_i;
@@ -944,6 +951,10 @@ module core_region
 		.RAM_SIZE(DATA_RAM_SIZE),
 		.DATA_WIDTH(AXI_DATA_WIDTH)
 	) data_mem(
+	`ifdef USE_POWER_PINS
+        .vccd1(vccd1),	// User area 1 1.8V supply
+        .vssd1(vssd1),	// User area 1 digital ground
+    `endif
 		.clk(clk),
 		.rstn_i(rst_n),
 		.en_i(data_mem_en),
