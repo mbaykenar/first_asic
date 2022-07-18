@@ -20,6 +20,9 @@ set script_dir [file dirname [file normalize [info script]]]
 
 set ::env(DESIGN_NAME) pulpino_top_wrapper
 
+# easier method for VERILOG_FILES
+#set ::env(VERILOG_FILES) [glob $::env(DESIGN_DIR)/src/*.v  $::env(DESIGN_DIR)/src/*.sv]
+
 set ::env(VERILOG_FILES) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
 	$script_dir/../../verilog/rtl/rtl/apb_mock_uart.v \
@@ -222,15 +225,29 @@ set ::env(DESIGN_IS_CORE) 0
 
 set ::env(CLOCK_PORT) "wb_clk_i"
 set ::env(CLOCK_NET) "pulpino_top_wrapper.clk"
-set ::env(CLOCK_PERIOD) "200"
+set ::env(CLOCK_PERIOD) "100"
 
-#set ::env(FP_SIZING) absolute
-#set ::env(DIE_AREA) "0 0 900 600"
+set ::env(PL_RESIZER_MAX_SLEW_MARGIN) 20
+set ::env(PL_RESIZER_MAX_CAP_MARGIN) 20
+set ::env(GLB_RESIZER_MAX_SLEW_MARGIN) 10
+
+set ::env(FP_SIZING) absolute
+set ::env(DIE_AREA) "0 0 2500 2500"
 
 set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
+set ::env(SYNTH_STRATEGY) "AREA 0"
+set ::env(PL_BASIC_PLACEMENT) 0
+set ::env(PL_TARGET_DENSITY) 0.35
+set ::env(FP_CORE_UTIL) {40}
+set ::env(PL_MACRO_CHANNEL) {20 20}
+set ::env(PL_MACRO_HALO) {10 10}
+set ::env(CELL_PAD) {1}
+set ::env(GLB_RESIZER_HOLD_MAX_BUFFER_PERCENT) {60}
+set ::env(ROUTING_CORES) {4}
+set ::env(GLB_RT_OVERFLOW_ITERS) {64}
 
-set ::env(PL_BASIC_PLACEMENT) 1
-set ::env(PL_TARGET_DENSITY) 0.4
+### Macro Placement
+set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
 
 # Maximum layer used for routing is metal 4.
 # This is because this macro will be inserted in a top level (user_project_wrapper) 
@@ -270,9 +287,6 @@ set ::env(RUN_CVC) 1
 set ::env(FP_PDN_MACRO_HOOKS) "\
    open_ram_2k vccd1 vssd1"
 
-### Macro Placement
-set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
-
 ### Black-box verilog and views
 set ::env(VERILOG_FILES_BLACKBOX) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
@@ -293,8 +307,6 @@ set ::env(EXTRA_LEFS) "\
 
 set ::env(EXTRA_GDS_FILES) "\
 	$script_dir/../../gds/sky130_sram_2kbyte_1rw1r_32x512_8.gds"
-
-set ::env(RT_MAX_LAYER) {met4}
 
 # disable pdn check nodes becuase it hangs with multiple power domains.
 # any issue with pdn connections will be flagged with LVS so it is not a critical check.
