@@ -1,7 +1,7 @@
 (DELAYFILE
  (SDFVERSION "3.0")
  (DESIGN "zeroriscy_multdiv_fast")
- (DATE "Mon Jul 18 07:02:04 2022")
+ (DATE "Tue Jul 19 06:11:41 2022")
  (VENDOR "Parallax")
  (PROGRAM "STA")
  (VERSION "2.3.1")

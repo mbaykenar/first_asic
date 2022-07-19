@@ -38,7 +38,7 @@ set ::env(PL_RESIZER_MAX_CAP_MARGIN) 20
 set ::env(GLB_RESIZER_MAX_SLEW_MARGIN) 10
 
 set ::env(FP_SIZING) absolute
-set ::env(DIE_AREA) "0 0 1000 1000"
+set ::env(DIE_AREA) "0 0 600 600"
 
 #set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
 set ::env(SYNTH_STRATEGY) "AREA 0"

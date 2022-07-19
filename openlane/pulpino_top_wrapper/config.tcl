@@ -232,16 +232,16 @@ set ::env(PL_RESIZER_MAX_CAP_MARGIN) 40
 set ::env(GLB_RESIZER_MAX_SLEW_MARGIN) 40
 
 set ::env(FP_SIZING) absolute
-set ::env(DIE_AREA) "0 0 2500 2500"
+set ::env(DIE_AREA) "0 0 2700 3200"
 
 set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
-set ::env(SYNTH_STRATEGY) "AREA 1"
+set ::env(SYNTH_STRATEGY) "AREA 0"
 set ::env(PL_BASIC_PLACEMENT) 0
 set ::env(PL_TARGET_DENSITY) 0.3
 set ::env(FP_CORE_UTIL) {30}
 set ::env(PL_MACRO_CHANNEL) {30 30}
 set ::env(PL_MACRO_HALO) {10 10}
-set ::env(CELL_PAD) {2}
+set ::env(CELL_PAD) {4}
 set ::env(GLB_RESIZER_HOLD_MAX_BUFFER_PERCENT) {60}
 set ::env(ROUTING_CORES) {6}
 set ::env(GLB_RT_OVERFLOW_ITERS) {100}
@@ -257,7 +257,7 @@ set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
 # 
 # set ::env(GLB_RT_MAXLAYER) 5
 
-set ::env(RT_MAX_LAYER) {met5}
+set ::env(RT_MAX_LAYER) {met4}
 
 # You can draw more power domains if you need to 
 set ::env(VDD_NETS) [list {vccd1}]
